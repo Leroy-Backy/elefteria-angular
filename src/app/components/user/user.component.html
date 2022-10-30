@@ -1,0 +1,81 @@
+<div class="container">
+
+  <!--First part-->
+  <div class="row" style="margin-top: 10px">
+
+    <!--profile image-->
+    <div class="col-md-4 col-sm-12">
+      <mat-card style="text-align: center; height: 100%">
+        <div *ngIf="user.avatar; else imgElse">
+          <img mat-card-image src="{{user.avatar}}" style="margin-top: 1%" class="img-fluid" alt="Responsive image"/>
+
+        </div>
+        <ng-template #imgElse >
+          <img mat-card-image src="assets/images/avatar_placeholder.png" style="margin-top: 1%" class="img-fluid" alt="Responsive image"/>
+        </ng-template>
+
+        <div *ngIf="checkCurrent()">
+          <button mat-button (click)="editProfile()">Edit Profile</button>
+        </div>
+
+      </mat-card>
+    </div>
+
+    <!--profile info-->
+    <div class="col-md-8 col-sm-12">
+      <mat-card style="height: 100%">
+        <mat-card-title>
+          {{user.firstName}} {{user.lastName}}
+        </mat-card-title>
+
+        <mat-card-content style="font-size: 15px">
+          <div>
+            {{user.status}}
+          </div>
+
+          <hr style="border: 1px solid black">
+
+        </mat-card-content>
+
+        <mat-card-footer style="display: flex; text-align: center">
+          <div style="flex: 1">
+            <button mat-button (click)="showFollowersOrFollows(1, +user.id)">
+              Followers: {{user.amountOfFollowers}}
+            </button>
+          </div>
+          <div style="flex: 1">
+            <button mat-button (click)="showFollowersOrFollows(2, +user.id)">
+              Follows: {{user.amountOfFollows}}
+            </button>
+          </div>
+        </mat-card-footer>
+
+      </mat-card>
+    </div>
+
+
+  </div>
+
+  <!--Second part-->
+  <div *ngIf="isContentInit" class="row">
+    <!--more info-->
+    <div class="col-md-4 col-sm-12" style="margin-top: 10px">
+      <div class="col-12" *ngIf="checkCurrent()">
+        <button mat-button (click)="createPost()">Create Post</button>
+      </div>
+      <div class="col-12" *ngIf="!checkCurrent()">
+        <button mat-button (click)="followUser(+user.id)">{{followWriting}}</button>
+      </div>
+    </div>
+
+
+    <!--posts-->
+    <div class="col-md-8 col-sm-12" style="margin-top: 10px">
+        <div *ngIf="user.id">
+          <app-posts [onChange]="userId" [mode]="mode"></app-posts>
+        </div>
+    </div>
+
+  </div>
+
+</div>
