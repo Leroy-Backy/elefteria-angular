@@ -199,7 +199,7 @@ export class PostsComponent implements OnInit, AfterContentInit{
       else if(this.mode == PostMode.POPULAR)
         this.getPostsPopular()
       else if(this.mode == PostMode.USER)
-        this.getPostById(this.userId)
+        this.getPostsByUserId(this.userId)
     }
   }
 

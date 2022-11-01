@@ -27,11 +27,11 @@
       </mat-card-title>
     </ng-template>
 
-    <mat-card-title style="padding-left: 10px">
+    <mat-card-title class="break-word" style="padding-left: 10px">
       {{post.title}}
     </mat-card-title>
 
-    <mat-card-content style="padding-left: 10px">
+    <mat-card-content class="break-word" style="padding-left: 10px">
       {{post.text}}
     </mat-card-content>
 
@@ -145,7 +145,7 @@
             <span style="float: right; font-weight: normal">{{comment.createdDate | date:'dd-MM-yyyy HH:mm'}}</span>
           </div>
 
-          <div>
+          <div class="break-word">
             {{comment.text}}
           </div>
         </div>
